@@ -11,6 +11,8 @@
     { "type": "git"
     , "url": "https://github.com/sgnl/punc"
     },
-  "author": "",
-  "license": "ISC"
+  "author": "Ray Farias <rayrfarias@gmail.com> (https://github.com/sgnl)",
+  "homepage": "https://github.com/sgnl/punc",
+  "issues": "https://github.com/sgnl/punc/issues",
+  "license": "MIT"
 }
