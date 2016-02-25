@@ -1,22 +1,20 @@
-'use strict';
+'use strict'
 
-const Fs = require('fs');
+const Promise   = require('bluebird')
+const readFile  = Promise.promisify(require('fs').readFile)
 
 function PuncModule (opts) {
-  let _filePath, module = {};
- 
-  module.load = (filePath) => {
-    _filePath = filePath;
+  let module = {}
 
-    return 'file path accepted';
+  module.parse = (filePath) => {
+    let promise = readFile(filePath, 'utf-8')
+      .then( fileContents => fileContents )
+
+    return promise
   };
 
-  module.parse = () => {
-    return 'parsing file';
-  };
-
-  return module;
+  return module
 }
 
-module.exports = PuncModule;
+module.exports = PuncModule
 
