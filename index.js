@@ -1,20 +1,30 @@
 'use strict'
 
-const Promise   = require('bluebird')
-const readFile  = Promise.promisify(require('fs').readFile)
+// const Promise   = require('bluebird')
+// const readFile  = Promise.promisify(require('fs').readFile)
+const stp = require('stream-to-promise')
+const readFile = require('fs').createReadStream;
 
+/* MODULE */
 function PuncModule (opts) {
   let module = {}
 
-  module.parse = (filePath) => {
-    let promise = readFile(filePath, 'utf-8')
-      .then( fileContents => fileContents )
+  return (filePath) => {
+    return new Promise((resolve, reject) => {
+      let promise =
+        stp(readFile(filePath))
+          .then(resolve)
+          .catch(reject)
 
-    return promise
+      return promise
+    })
   };
-
-  return module
 }
 
+/* THE TRUTH IS OUT THERE */
 module.exports = PuncModule
 
+/* HELPERS */
+function countPunctuation (buffer) {
+  buffer.on('data')
+}
