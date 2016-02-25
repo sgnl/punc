@@ -1,7 +1,5 @@
 'use strict'
 
-// const Promise   = require('bluebird')
-// const readFile  = Promise.promisify(require('fs').readFile)
 const stp = require('stream-to-promise')
 const readFile = require('fs').createReadStream;
 
