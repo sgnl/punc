@@ -1,4 +1,5 @@
 .tern-port
 .#*.*
 
+node_modules/
 npm-debug.log
