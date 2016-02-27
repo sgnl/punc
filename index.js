@@ -48,6 +48,7 @@ function Punc(filePath, options){
         }
         return callback(null, chunk)
       }))
+      .on('data', data => {})
       .on('end', _ => {
         resolve({
           body: punctuationsOnly.join(''),
