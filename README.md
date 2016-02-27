@@ -8,7 +8,26 @@ Ever wonder what your favorite books look like without words?
 ## Installation
 `npm install punc`
 
-## Usage
+## Example Usage
+
+```javascript
+'use strict'
+
+const Punc = require('./index')
+
+Punc('alice.txt', 'utf8')
+  .then(book => {
+    console.log(book.count)
+    console.log(book.body)
+  })
+  .catch(error => {
+    console.log(error)
+  })
+
+```
+Output found: [here][EXAMPLE_OUTPUT]
+
+## Documentation
 Please see the [wiki][WIKI].
 
 ## Notes
@@ -34,4 +53,7 @@ Please see the [wiki][WIKI].
 
 [WIKI]: https://github.com/sgnl/punc/wiki/Usage
 
+[EXAMPLE_OUTPUT]: https://gist.github.com/sgnl/cce4382fd9302515e838
+
 [LICENSE]: https://github.com/sgnl/punc/blob/master/LICENSE
+
