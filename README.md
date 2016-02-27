@@ -1,5 +1,3 @@
-<!-- intro -->
-
 # Punc
 ![image](https://cloud.githubusercontent.com/assets/3915598/13369726/783be3d0-dc9c-11e5-846a-5f1ec6517966.png)
 
@@ -19,8 +17,6 @@ Please see the [wiki][WIKI].
   - Punctuations to use when counting occurances:
 
     `; : ' " , ! ? .`
-
-<!-- footer -->
 
 ### Inspiration
 *inspired by [this article][1] on medium which was in-turn inspired by [this article][2]*
