@@ -11,9 +11,11 @@ function Punc(filePath, options){
     options = { encoding: 'utf8' }
   } else if (typeof options === 'string') {
     options = { encoding: options }
-  } else {
-    throw new TypeError('Punc: expected options to be either an object or a string, ' +
-    'but got ' + typeof options + ' instead');
+  } else if (typeof options !== 'object') {
+    throw new TypeError(
+      'Punc: expected options to be either an object or a \
+      string, ' + 'but got ' + typeof options + ' instead'
+    )
   }
 
   let punctuationsSeen = { ';': 0
