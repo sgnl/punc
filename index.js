@@ -33,8 +33,6 @@ function Punc(filePath, options){
 
   let punctuationsOnly = [];
 
-  console.log('inside Punc Module')
-
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
       /**
@@ -42,9 +40,7 @@ function Punc(filePath, options){
        * ; : ' " , ! ? . ( ) -
        */
       .pipe(Through2.obj(function(chunk, _, callback) {
-
         for (let i = 0; i < chunk.length; i++) {
-
           if ( chunk[i] in punctuationsSeen ) {
             punctuationsSeen[ chunk[i] ]++
             punctuationsOnly.push(chunk[i])
@@ -52,9 +48,6 @@ function Punc(filePath, options){
         }
         return callback(null, chunk)
       }))
-      .on('data', data => {
-
-      })
       .on('end', _ => {
         resolve({
           body: punctuationsOnly.join(''),
