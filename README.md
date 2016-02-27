@@ -9,6 +9,7 @@ Read a file, remove the words, see all the punctuations
 ## Example Usage
 
 ```javascript
+
 'use strict'
 
 const Punc = require('./index')
