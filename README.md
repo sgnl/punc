@@ -1,4 +1,6 @@
 # Punc
+Read a file, remove the words, see all the punctuations
+
 ![image](https://cloud.githubusercontent.com/assets/3915598/13369726/783be3d0-dc9c-11e5-846a-5f1ec6517966.png)
 
 Ever wonder what your favorite books look like without words?
