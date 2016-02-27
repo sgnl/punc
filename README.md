@@ -8,6 +8,9 @@ Ever wonder what your favorite books look like without words?
 ## Installation
 `npm install punc`
 
+## Usage
+Please see the [wiki][WIKI].
+
 ## Notes
   - Punctuations to keep when removing words:
 
@@ -30,5 +33,7 @@ Ever wonder what your favorite books look like without words?
 [1]: https://medium.com/@neuroecology/punctuation-in-novels-8f316d542ec4#.6e7lvvwp8
 
 [2]: http://www.c82.net/work/?id=347
+
+[WIKI]: https://github.com/sgnl/punc/wiki/Usage
 
 [LICENSE]: https://github.com/sgnl/punc/blob/master/LICENSE
