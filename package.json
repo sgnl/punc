@@ -1,7 +1,7 @@
 {
   "name": "punc",
   "version": "1.0.2",
-  "description": "",
+  "description": "Ever wonder what your favorite books look like without words?",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
