@@ -1,9 +1,9 @@
 'use strict'
 
-const Promise = require('bluebird')
-const Through2 = require('through2')
-const ReadFile = require('fs').createReadStream
-const Reduce = Array.prototype.reduce;
+const Promise   = require('bluebird')
+const Through2  = require('through2')
+const ReadFile  = require('fs').createReadStream
+const ForEach    = [].forEach
 
 /* MODULE */
 function Punc(filePath, options){
@@ -18,6 +18,7 @@ function Punc(filePath, options){
     )
   }
 
+  let punctuationsOnly = [];
   let punctuationsSeen = { ';': 0
     , ':': 0
     , "'": 0
@@ -31,30 +32,21 @@ function Punc(filePath, options){
     , '-': 0
     }
 
-  let punctuationsOnly = [];
-
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
-      /**
-       * remove words, leave only punctuations and count them too!
-       * ; : ' " , ! ? . ( ) -
-       */
       .pipe(Through2.obj(function(chunk, _, callback) {
-        for (let i = 0; i < chunk.length; i++) {
-          if ( chunk[i] in punctuationsSeen ) {
-            punctuationsSeen[ chunk[i] ]++
-            punctuationsOnly.push(chunk[i])
+        ForEach.call(chunk, each => {
+          if ( each in punctuationsSeen ) {
+            punctuationsSeen[ each ]++
+            punctuationsOnly.push(each)
           }
-        }
-        return callback(null, chunk)
-      }))
-      .on('data', data => {})
-      .on('end', _ => {
-        resolve({
-          body: punctuationsOnly.join(''),
-          count: punctuationsSeen
         })
-      })
+        callback()
+      }))
+      .on('data', _ => _)
+      .on('end', _ => resolve({ body: punctuationsOnly.join('')
+        , count: punctuationsSeen
+        }))
       .on('error', error => reject(error))
   })
 }
