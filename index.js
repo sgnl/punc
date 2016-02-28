@@ -18,7 +18,7 @@ function Punc(filePath, options){
     )
   }
 
-  let punctuationsOnly = [];
+  let punctuationsOnly = []
   let punctuationsSeen = { ';': 0
     , ':': 0
     , "'": 0
