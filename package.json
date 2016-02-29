@@ -4,7 +4,7 @@
   "description": "Ever wonder what your favorite books look like without words?",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/tape 'tests/**/*.js'"
   },
   "keywords": [
     "punc",
@@ -22,5 +22,9 @@
   "dependencies": {
     "bluebird": "^3.3.1",
     "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "mock-fs": "^3.7.0",
+    "tape": "^4.4.0"
   }
 }
