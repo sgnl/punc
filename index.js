@@ -3,7 +3,7 @@
 const Promise   = require('bluebird')
 const Through2  = require('through2')
 const ReadFile  = require('fs').createReadStream
-const ForEach    = [].forEach
+const ForEach   = [].forEach
 
 /* MODULE */
 function Punc(filePath, options){
