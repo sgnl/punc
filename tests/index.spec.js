@@ -61,5 +61,5 @@ Test('Punc: punctuation count', t => {
       }
       t.end()
     })
-    .catch(err => t.fail())
+    .catch(err => t.fail(err))
 })
