@@ -84,8 +84,8 @@ Test('Punc: words per sentence', t => {
   t.plan(2)
   Punc('books/word_count.txt')
     .then(book => {
-      t.ok(book.wordCount, 'wordCount property exists on returned object')
-      t.equals(book.wordCount, '2.5')
+      t.ok(book.wordsPerSentence, 'wordCount property exists on returned object')
+      t.equals(book.wordsPerSentence, 2.5)
     })
     .catch(err => t.fail(err))
 })
