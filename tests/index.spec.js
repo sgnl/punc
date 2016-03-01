@@ -53,8 +53,9 @@ Test('Punc: punctuation count', t => {
         }
 
         if (aliceCheatSheet[key] !== book.count[key]) {
-          return t.fail(`Value mismatch.\
-            Expected: ${aliceCheatSheet[key]}.\
+          return t.fail(`Value mismatch.\n\
+            Punctuation: ${key}\n\
+            Expected: ${aliceCheatSheet[key]}.\n\
             Actual: ${book.count[key]}`)
         }
       }
