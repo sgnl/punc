@@ -36,8 +36,8 @@ function Punc(filePath, options){
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
       .pipe(findPuncuationsAndCount.call(null
-          , punctuationsSeen
-          , punctuationsOnly
+        , punctuationsSeen
+        , punctuationsOnly
       ))
       .on('data', _ => _)
       .on('end', _ => resolve({ body: punctuationsOnly.join('')
