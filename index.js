@@ -35,15 +35,10 @@ function Punc(filePath, options){
 
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
-      .pipe(Through2.obj(function(chunk, _, callback) {
-        ForEach.call(chunk, each => {
-          if ( each in punctuationsSeen ) {
-            punctuationsSeen[ each ]++
-            punctuationsOnly.push(each)
-          }
-        })
-        callback()
-      }))
+      .pipe(findPuncuationsAndCount.call(null
+          , punctuationsSeen
+          , punctuationsOnly
+      ))
       .on('data', _ => _)
       .on('end', _ => resolve({ body: punctuationsOnly.join('')
         , count: punctuationsSeen
@@ -52,5 +47,18 @@ function Punc(filePath, options){
   })
 }
 
+function findPuncuationsAndCount (map, dest) {
+  return Through2.obj(function(chunk, _, callback) {
+    ForEach.call(chunk, punctuation => {
+      if ( punctuation in map ) {
+        map[ punctuation ]++
+        dest.push(punctuation)
+      }
+    })
+    callback()
+  })
+}
+
 /* THE TRUTH IS OUT THERE */
 module.exports = Punc
+
