@@ -13,9 +13,8 @@ function Punc(filePath, options){
   } else if (typeof options === 'string') {
     options = { encoding: options }
   } else if (typeof options !== 'object') {
-    throw new TypeError(
-      'Punc: expected options to be either an object or a \
-      string, ' + 'but got ' + typeof options + ' instead'
+    throw new TypeError(`Punc: expected options to be either
+      an object or a string, but got ${typeof options} instead`
     )
   }
 
