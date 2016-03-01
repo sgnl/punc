@@ -80,8 +80,6 @@ Test('Punc: punctuation body', t => {
     .catch(err => t.fail(err))
 })
 
-
-
 Test('Punc: words per sentence', t => {
   t.plan(2)
   Punc('books/word_count.txt')
