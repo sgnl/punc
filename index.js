@@ -7,6 +7,7 @@ const ForEach   = [].forEach
 
 /* MODULE */
 function Punc(filePath, options){
+  if (!filePath) throw new Error('Punc: file path not given.')
   if (!options) {
     options = { encoding: 'utf8' }
   } else if (typeof options === 'string') {
