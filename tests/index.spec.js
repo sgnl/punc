@@ -12,20 +12,20 @@ Mock({ 'books': { 'alice.txt': aliceStub } })
 
 /* TESTS */
 Test('Punc: exists?', t => {
-  t.equal(typeof Punc, 'function', 'it exists.')
-  t.end()
+  t.plan(1)
+  t.equal(typeof Punc, 'function', 'it exists')
 })
 
 Test('Punc: handles null filePath argument?', t => {
-  t.throws(_ => Punc(), 'error throws.')
-  t.end()
+  t.plan(1)
+  t.throws(_ => Punc(), 'error throws')
 })
 
 Test('Punc: returns a Promise?', t => {
+  t.plan(2)
   let module = Punc('books/alice.txt')
-  t.ok(module.then, 'is then-able.')
-  t.ok(module.catch, 'is catch-able.')
-  t.end()
+  t.ok(module.then, 'is then-able')
+  t.ok(module.catch, 'is catch-able')
 })
 
 Test('Punc: punctuation count', t => {
@@ -45,8 +45,7 @@ Test('Punc: punctuation count', t => {
 
   Punc('books/alice.txt')
     .then(book => {
-      t.ok(book.count, 'count property exists on returns object')
-
+      t.ok(book.count, 'count property exists on returned object')
       for (let key in book.count) {
 
         if (!aliceCheatSheet.hasOwnProperty(key)) {
@@ -59,7 +58,16 @@ Test('Punc: punctuation count', t => {
             Actual: ${book.count[key]}`)
         }
       }
-      t.end()
+    })
+    .catch(err => t.fail(err))
+})
+
+Test('Punc: punctuation body', t => {
+  t.plan(2)
+  Punc('books/alice.txt')
+    .then(book => {
+      t.ok(book.body, 'body property exists on returned object')
+      t.equals(book.body, '-;,.\'(-;-.,""')
     })
     .catch(err => t.fail(err))
 })
