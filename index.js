@@ -31,7 +31,7 @@ function Punc(filePath, options){
     , '(': 0
     , ')': 0
     , '-': 0
-    }
+  }
 
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
@@ -47,7 +47,7 @@ function Punc(filePath, options){
       .on('data', _ => _)
       .on('end', _ => resolve({ body: punctuationsOnly.join('')
         , count: punctuationsSeen
-        }))
+      }))
       .on('error', error => reject(error))
   })
 }
