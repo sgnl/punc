@@ -7,8 +7,15 @@ const Punc = require('../')
 
 /* MOCK FILE SYSTEM */
 let aliceStub = new Buffer('-;alice,in.wonder\'land(-;-.,""')
+let word_count_stub = new Buffer('one.\
+  twotwo.\
+  threethreethree.\
+  fourfourfourfour.')
 
-Mock({ 'books': { 'alice.txt': aliceStub } })
+Mock({ 'books': { 'alice.txt': aliceStub
+  , 'word_count.txt': word_count_stub
+  }
+})
 
 /* TESTS */
 Test('Punc: exists?', t => {
@@ -69,6 +76,18 @@ Test('Punc: punctuation body', t => {
     .then(book => {
       t.ok(book.body, 'body property exists on returned object')
       t.equals(book.body, '-;,.\'(-;-.,""')
+    })
+    .catch(err => t.fail(err))
+})
+
+
+
+Test('Punc: words per sentence', t => {
+  t.plan(2)
+  Punc('books/word_count.txt')
+    .then(book => {
+      t.ok(book.wordCount, 'wordCount property exists on returned object')
+      t.equals(book.wordCount, '2.5')
     })
     .catch(err => t.fail(err))
 })
