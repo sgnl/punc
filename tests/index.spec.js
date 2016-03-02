@@ -8,8 +8,8 @@ const Punc = require('../')
 /* MOCK FILE SYSTEM */
 let aliceStub = new Buffer('-;alice,in.wonder\'land(-;-.,""')
 let word_count_stub = new Buffer(`one.
-  two two.
-  three three three.
+  two two!
+  three three three?
   four four four four.`)
 
 Mock({ 'books': { 'alice.txt': aliceStub
