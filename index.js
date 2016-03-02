@@ -35,8 +35,8 @@ function Punc(filePath, options){
 
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
-      .pipe(removeCarriageReturn())
-      .pipe(removeDoubleSpaces())
+      .pipe(removeAndReplace(/\r/g, ''))
+      .pipe(removeAndReplace(/\s\s+/g, ' '))
       .pipe(findWordsPerSentence(count => wordsPerSent = count))
       .pipe(findAndCount(dict, punctuationStore))
       .on('data', _ => _)
@@ -51,17 +51,9 @@ function Punc(filePath, options){
   })
 }
 
-function removeCarriageReturn () {
+function removeAndReplace (regex, replace) {
   return Through2.obj(function(chunk, _, callback) {
-    chunk = chunk.replace(/\r/g, '')
-
-    callback(null, chunk)
-  })
-}
-
-function removeDoubleSpaces () {
-  return Through2.obj(function(chunk, _, callback) {
-    chunk = chunk.replace(/\s\s+/g, ' ')
+    chunk = chunk.replace(regex, replace)
 
     callback(null, chunk)
   })
