@@ -18,9 +18,9 @@ function Punc(filePath, options){
     )
   }
 
-  let punctuationsOnly = []
-  let wordsPerSentenceCount = 0
-  let punctuationsSeen = { ';': 0
+  let punctuationStore = []
+  let wordsPerSent = 0
+  let dict = { ';': 0
     , ':': 0
     , "'": 0
     , '"': 0
@@ -37,14 +37,14 @@ function Punc(filePath, options){
     ReadFile(filePath, options.encoding)
       .pipe(removeCarriageReturn())
       .pipe(removeDoubleSpaces())
-      .pipe(wordsPerSentence(count => wordsPerSentenceCount = count))
-      .pipe(findPunctuationsAndCount(punctuationsSeen, punctuationsOnly))
+      .pipe(findWordsPerSentence(count => wordsPerSent = count))
+      .pipe(findAndCount(dict, punctuationStore))
       .on('data', _ => _)
       .on('end', _ => {
-        console.log('end count:', wordsPerSentenceCount)
-        return resolve({ body: punctuationsOnly.join('')
-        , count: punctuationsSeen
-        , wordsPerSentence: wordsPerSentenceCount
+        console.log('end count:', wordsPerSent)
+        return resolve({ body: punctuationStore.join('')
+        , count: dict
+        , wordsPerSentence: wordsPerSent
         })
       })
       .on('error', error => reject(error))
@@ -67,18 +67,17 @@ function removeDoubleSpaces () {
   })
 }
 
-function wordsPerSentence (changeCount) {
+function findWordsPerSentence (changeCount) {
   return Through2.obj(function(chunk, _, callback) {
     let periodCount = (chunk.match(/\.|\?|\!/g) || []).length
     let wordCount = chunk.split(' ').length
 
     changeCount(wordCount / periodCount)
-
     callback(null, chunk)
   })
 }
 
-function findPunctuationsAndCount (map, dest) {
+function findAndCount (map, dest) {
   return Through2.obj(function(chunk, _, callback) {
     ForEach.call(chunk, punctuation => {
       if ( punctuation in map ) {
