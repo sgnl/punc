@@ -19,7 +19,7 @@ function Punc(filePath, options){
   }
 
   let punctuationsOnly = []
-  let wordsPerSentenceCount = 0;
+  let wordsPerSentenceCount = 0
   let punctuationsSeen = { ';': 0
     , ':': 0
     , "'": 0
@@ -41,7 +41,7 @@ function Punc(filePath, options){
       .pipe(findPunctuationsAndCount(punctuationsSeen, punctuationsOnly))
       .on('data', _ => _)
       .on('end', _ => {
-        console.log('end count:', wordsPerSentenceCount);
+        console.log('end count:', wordsPerSentenceCount)
         return resolve({ body: punctuationsOnly.join('')
         , count: punctuationsSeen
         , wordsPerSentence: wordsPerSentenceCount
