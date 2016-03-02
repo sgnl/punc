@@ -19,6 +19,7 @@ function Punc(filePath, options){
   }
 
   let punctuationsOnly = []
+  let wordsPerSentenceCount = 0;
   let punctuationsSeen = { ';': 0
     , ':': 0
     , "'": 0
@@ -34,19 +35,50 @@ function Punc(filePath, options){
 
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
-      .pipe(findPuncuationsAndCount.call(null
-        , punctuationsSeen
-        , punctuationsOnly
-      ))
+      .pipe(removeCarriageReturn())
+      .pipe(removeDoubleSpaces())
+      .pipe(wordsPerSentence(count => wordsPerSentenceCount = count))
+      .pipe(findPunctuationsAndCount(punctuationsSeen, punctuationsOnly))
       .on('data', _ => _)
-      .on('end', _ => resolve({ body: punctuationsOnly.join('')
+      .on('end', _ => {
+        console.log('end count:', wordsPerSentenceCount);
+        return resolve({ body: punctuationsOnly.join('')
         , count: punctuationsSeen
-      }))
+        , wordsPerSentence: wordsPerSentenceCount
+        })
+      })
       .on('error', error => reject(error))
   })
 }
 
-function findPuncuationsAndCount (map, dest) {
+function removeCarriageReturn () {
+  return Through2.obj(function(chunk, _, callback) {
+    chunk = chunk.replace(/\r/g, '')
+
+    callback(null, chunk)
+  })
+}
+
+function removeDoubleSpaces () {
+  return Through2.obj(function(chunk, _, callback) {
+    chunk = chunk.replace(/\s\s+/g, ' ')
+
+    callback(null, chunk)
+  })
+}
+
+function wordsPerSentence (changeCount) {
+  return Through2.obj(function(chunk, _, callback) {
+    let periodCount = (chunk.match(/\.|\?|\!/g) || []).length
+    let wordCount = chunk.split(' ').length
+
+    changeCount(wordCount / periodCount)
+
+    callback(null, chunk)
+  })
+}
+
+function findPunctuationsAndCount (map, dest) {
   return Through2.obj(function(chunk, _, callback) {
     ForEach.call(chunk, punctuation => {
       if ( punctuation in map ) {
