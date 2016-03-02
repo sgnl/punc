@@ -1,6 +1,6 @@
 {
   "name": "punc",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Ever wonder what your favorite books look like without words?",
   "main": "index.js",
   "scripts": {
