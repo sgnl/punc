@@ -41,7 +41,6 @@ function Punc(filePath, options){
       .pipe(findAndCount(dict, punctuationStore))
       .on('data', _ => _)
       .on('end', _ => {
-        console.log('end count:', wordsPerSent)
         return resolve({ body: punctuationStore.join('')
         , count: dict
         , wordsPerSentence: wordsPerSent
