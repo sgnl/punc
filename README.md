@@ -3,8 +3,9 @@ Read a file, remove the words, see all the punctuations.
 
 ![image](https://cloud.githubusercontent.com/assets/3915598/13369726/783be3d0-dc9c-11e5-846a-5f1ec6517966.png)
 
-[![npm version](https://badge.fury.io/js/punc.svg)](https://badge.fury.io/js/punc)
-[![Build Status](https://travis-ci.org/sgnl/punc.svg?branch=master)](https://travis-ci.org/sgnl/punc)
+[![npm](https://img.shields.io/npm/v/punc.svg?style=flat-square)](https://badge.fury.io/js/punc)
+[![Travis](https://img.shields.io/travis/sgnl/punc.svg?style=flat-square)](https://travis-ci.org/sgnl/punc)
+[![Coveralls branch](https://img.shields.io/coveralls/sgnl/punc/master.svg?style=flat-square)](https://coveralls.io/github/sgnl/punc)
 
 ## Installation
 `npm install punc`
