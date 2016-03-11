@@ -20,6 +20,7 @@ function Punc(filePath, options){
 
   let punctuationStore = []
   let wordsPerSent = 0
+  let spacedOutBody = '';
   let dict = { ';': 0
     , ':': 0
     , "'": 0
@@ -39,20 +40,24 @@ function Punc(filePath, options){
       .pipe(removeAndReplace(/\s\s+/g, ' '))
       .pipe(findWordsPerSentence(count => wordsPerSent = count))
       .pipe(findAndCount(dict, punctuationStore))
+      .pipe(removeAndReplace(/[a-zA-Z\d]+/g, ' ', spaced => spacedOutBody = spaced))
       .on('data', _ => _)
       .on('end', _ => {
         return resolve({ body: punctuationStore.join('')
         , count: dict
         , wordsPerSentence: wordsPerSent
+        , spaced: spacedOutBody
         })
       })
       .on('error', error => reject(error))
   })
 }
 
-function removeAndReplace (regex, replace) {
+function removeAndReplace (regex, replace, dest) {
   return Through2.obj(function(chunk, _, callback) {
     chunk = chunk.replace(regex, replace)
+
+    if (dest) dest(chunk)
 
     callback(null, chunk)
   })
@@ -76,7 +81,7 @@ function findAndCount (map, dest) {
         dest.push(punctuation)
       }
     })
-    callback()
+    callback(null, chunk)
   })
 }
 
