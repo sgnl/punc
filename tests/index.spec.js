@@ -89,3 +89,12 @@ Test('Punc: words per sentence', t => {
     })
     .catch(err => t.fail(err))
 })
+
+Test('Punc: spaced out text', t => {
+  t.plan(2)
+  Punc('books/word_count.txt')
+    .then(book => {
+      t.ok(book.spaced, 'spaced property exists on returned object')
+      t.equals(book.spaced, ' .    !      ?        .')
+    })
+})
