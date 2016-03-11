@@ -6,7 +6,7 @@ Read a file, remove the words, see all the punctuations
 ## Installation
 `npm install punc`
 
-## Example Usage
+## Example Usage #1
 
 ```javascript
 
@@ -24,10 +24,17 @@ Punc('alice.txt', 'utf8')
   })
 
 ```
+
 Output found: [here][EXAMPLE_OUTPUT]
 
 ## Documentation
 Please see the [wiki][WIKI].
+
+### Features
+  1. removes words and numbers from a file leaving only punctuations.
+  1. counts each punctuation seen.
+  1. words per sentence average.
+  1. same as (#1) but instead replaces each character found with an empty space.
 
 ## Notes
   - Punctuations to keep when removing words:
