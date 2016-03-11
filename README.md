@@ -7,7 +7,9 @@ Read a file, remove the words, see all the punctuations.
 [![Travis](https://img.shields.io/travis/sgnl/punc.svg?style=flat-square)](https://travis-ci.org/sgnl/punc)
 
 ## Installation
-`npm install punc`
+```bash
+npm install punc
+```
 
 ## Example Usage #1
 
