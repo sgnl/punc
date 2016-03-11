@@ -46,7 +46,7 @@ Please see the [wiki][WIKI].
     `; : ' " , ! ? .`
 
 ## Inspiration
-*inspired by [this article][1] on medium which was in-turn inspired by [this article][2]*
+[this article][1] on medium which was in-turn inspired by [this article][2]*
 
 ## License
 [MIT][LICENSE]
