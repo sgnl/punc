@@ -37,7 +37,7 @@ Test('Punc: returns a Promise?', t => {
 
 Test('Punc: punctuation count', t => {
   t.plan(1)
-  let aliceCheatSheet = { ';': 2
+  let punctuationMap = { ';': 2
     , ':': 0
     , '\'': 1
     , '"': 2
@@ -55,14 +55,14 @@ Test('Punc: punctuation count', t => {
       t.ok(book.count, 'count property exists on returned object')
       for (let key in book.count) {
 
-        if (!aliceCheatSheet.hasOwnProperty(key)) {
+        if (!punctuationMap.hasOwnProperty(key)) {
           return t.fail(`Key not found: ${key}`)
         }
 
-        if (aliceCheatSheet[key] !== book.count[key]) {
+        if (punctuationMap[key] !== book.count[key]) {
           return t.fail(`Value mismatch.\n\
             Punctuation: ${key}\n\
-            Expected: ${aliceCheatSheet[key]}.\n\
+            Expected: ${punctuationMap[key]}.\n\
             Actual: ${book.count[key]}`)
         }
       }
