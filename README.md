@@ -5,7 +5,6 @@ Read a file, remove the words, see all the punctuations.
 
 [![npm version](https://badge.fury.io/js/punc.svg)](https://badge.fury.io/js/punc)
 [![Build Status](https://travis-ci.org/sgnl/punc.svg?branch=master)](https://travis-ci.org/sgnl/punc)
-[![Build Status](https://travis-ci.org/sgnl/punc.svg?branch=master)](https://travis-ci.org/sgnl/punc)
 
 ## Installation
 `npm install punc`
