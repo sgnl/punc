@@ -1,7 +1,11 @@
 # Punc
-Read a file, remove the words, see all the punctuations
+Read a file, remove the words, see all the punctuations.
 
 ![image](https://cloud.githubusercontent.com/assets/3915598/13369726/783be3d0-dc9c-11e5-846a-5f1ec6517966.png)
+
+[![npm version](https://badge.fury.io/js/punc@2x.png)](https://badge.fury.io/js/punc)
+[![Build Status](https://travis-ci.org/sgnl/punc.svg?branch=master)](https://travis-ci.org/sgnl/punc)
+[![Build Status](https://travis-ci.org/sgnl/punc.svg?branch=master)](https://travis-ci.org/sgnl/punc)
 
 ## Installation
 `npm install punc`
