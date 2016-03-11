@@ -38,8 +38,8 @@ function Punc(filePath, options){
     ReadFile(filePath, options.encoding)
       .pipe(removeAndReplace(/\r/g, ''))
       .pipe(removeAndReplace(/\s\s+/g, ' '))
-      .pipe(findWordsPerSentence(count => wordsPerSent = count))
       .pipe(findAndCount(dict, punctuationStore))
+      .pipe(findWordsPerSentence(count => wordsPerSent = count))
       .pipe(removeAndReplace(/[a-zA-Z\d]+/g, ' ', spaced => spacedOutBody = spaced))
       .on('data', _ => _)
       .on('end', _ => {
