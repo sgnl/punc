@@ -1,3 +1,4 @@
+
 'use strict'
 
 const Promise   = require('bluebird')
@@ -87,4 +88,3 @@ function findAndCount (map, dest) {
 
 /* THE TRUTH IS OUT THERE */
 module.exports = Punc
-
