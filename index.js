@@ -21,7 +21,7 @@ function Punc(filePath, options){
 
   let punctuationStore = []
   let wordsPerSent = 0
-  let spacedOutBody = '';
+  let spacedOutBody = ''
   let dict = { ';': 0
     , ':': 0
     , "'": 0
