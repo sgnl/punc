@@ -24,7 +24,6 @@
     "through2": "^2.0.1"
   },
   "devDependencies": {
-    "mock-fs": "^3.7.0",
     "tape": "^4.4.0"
   }
 }
