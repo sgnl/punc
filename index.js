@@ -37,8 +37,8 @@ function Punc(filePath, options){
 
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
-      .pipe(removeAndReplace(/\r/g, ''))
-      .pipe(removeAndReplace(/\s\s+/g, ' '))
+      .pipe(removeAndReplace(/[\r\n]/g, ''))
+      .pipe(removeAndReplace(/[\s]+/g, ' '))
       .pipe(findAndCount(dict, punctuationStore))
       .pipe(findWordsPerSentence(count => wordsPerSent = count))
       .pipe(removeAndReplace(/[a-zA-Z\d]+/g, ' ', spaced => spacedOutBody = spaced))
