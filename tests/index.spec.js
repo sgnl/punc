@@ -5,18 +5,6 @@ const Mock = require('mock-fs')
 
 const Punc = require('../')
 
-/* MOCK FILE SYSTEM */
-let aliceStub = new Buffer('-;alice,in.wonder\'land(-;-.,""')
-let wordCountStub = new Buffer(`one.
-  two two!
-  three three three?
-  four four four four.`)
-
-Mock({ 'books': { 'alice.txt': aliceStub
-  , 'word_count.txt': wordCountStub
-  }
-})
-
 /* TESTS */
 Test('Punc: exists?', t => {
   t.plan(1)
@@ -30,7 +18,7 @@ Test('Punc: handles null filePath argument?', t => {
 
 Test('Punc: returns a Promise?', t => {
   t.plan(2)
-  let module = Punc('books/alice.txt')
+  let module = Punc('tests/books/alice.txt')
   t.ok(module.then, 'is then-able')
   t.ok(module.catch, 'is catch-able')
 })
@@ -50,7 +38,7 @@ Test('Punc: punctuation count', t => {
     , '-': 3
   }
 
-  Punc('books/alice.txt')
+  Punc('tests/books/alice.txt')
     .then(book => {
       t.ok(book.count, 'count property exists on returned object')
       for (let key in book.count) {
@@ -72,7 +60,7 @@ Test('Punc: punctuation count', t => {
 
 Test('Punc: punctuation body', t => {
   t.plan(2)
-  Punc('books/alice.txt')
+  Punc('tests/books/alice.txt')
     .then(book => {
       t.ok(book.body, 'body property exists on returned object')
       t.equals(book.body, '-;,.\'(-;-.,""')
@@ -82,7 +70,7 @@ Test('Punc: punctuation body', t => {
 
 Test('Punc: words per sentence', t => {
   t.plan(2)
-  Punc('books/word_count.txt')
+  Punc('tests/books/word_count.txt')
     .then(book => {
       t.ok(book.wordsPerSentence, 'wordCount property exists on returned object')
       t.equals(book.wordsPerSentence, 2.5)
@@ -92,7 +80,7 @@ Test('Punc: words per sentence', t => {
 
 Test('Punc: spaced out text', t => {
   t.plan(2)
-  Punc('books/word_count.txt')
+  Punc('tests/books/word_count.txt')
     .then(book => {
       t.ok(book.spaced, 'spaced property exists on returned object')
       t.equals(book.spaced, ' .    !      ?        .')
