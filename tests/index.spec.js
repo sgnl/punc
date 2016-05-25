@@ -2,6 +2,7 @@
 
 const Test = require('tape')
 const Mock = require('mock-fs')
+const ReadFile = require('fs').readFile
 
 const Punc = require('../')
 
@@ -85,4 +86,26 @@ Test('Punc: spaced out text', t => {
       t.ok(book.spaced, 'spaced property exists on returned object')
       t.equals(book.spaced, ' .    !      ?        .')
     })
+})
+
+Test('Punc.createPDF: method exists?', t => {
+  t.equals(typeof Punc.createPDF, 'function', 'createPDF method exists.')
+  t.end()
+})
+
+Test('Punc.createPDF: creates PDF file', t => {
+  t.plan(2)
+
+  let filePath = 'tests/books/dream_speech';
+
+  Punc.createPDF(filePath)
+    .then(success => {
+      t.pass('Punc returns success message')
+
+      ReadFile(filePath, (err, data) => {
+        if (err) return reject(err)
+        if (data) t.pass('pdf file exists')
+      })
+    })
+    .catch(err => t.fail(err))
 })
