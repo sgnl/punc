@@ -1,7 +1,6 @@
 'use strict'
 
 const Test = require('tape')
-const Mock = require('mock-fs')
 const ReadFile = require('fs').readFile
 
 const Punc = require('../')
