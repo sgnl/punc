@@ -23,13 +23,8 @@ npm install punc
 const Punc = require('./index')
 
 Punc('alice.txt', 'utf8')
-  .then(book => {
-    console.log(book.count)
-    console.log(book.body)
-  })
-  .catch(error => {
-    console.log(error)
-  })
+  .then(dataFromPunc => console.log(dataFromPunc))
+  .catch(error => handleError(error))
 
 ```
 
@@ -39,10 +34,10 @@ Output found: [here][EXAMPLE_OUTPUT]
 Please see the [wiki][WIKI].
 
 ### Features
-  1. removes words and numbers from a file leaving only punctuations.
-  1. counts each punctuation seen.
-  1. words per sentence average.
-  1. same as (#1) but instead replaces each character found with an empty space.
+  1. Read a file, remove words and numbers, do something with the `data`:
+     - `data.count`: keeps count of every punctuation seen
+     - `data.body`: complete text with letters and numbers replaced with a space-character
+     - `data.wordCount`: calculates the words per sentence average
   1. Generate a PDF file. See how it would look like on e-paper
 
 ## Notes
@@ -55,7 +50,7 @@ Please see the [wiki][WIKI].
     `; : ' " , ! ? .`
 
 ## Inspiration
-[this article][1] on medium which was in-turn inspired by [this person's word.][2]*
+[this article][1] on medium which was in-turn inspired by [this person's word.][2]
 
 ## License
 [MIT][LICENSE]
