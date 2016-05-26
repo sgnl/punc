@@ -43,6 +43,7 @@ Please see the [wiki][WIKI].
   1. counts each punctuation seen.
   1. words per sentence average.
   1. same as (#1) but instead replaces each character found with an empty space.
+  1. Generate a PDF file. See how it would look like on e-paper
 
 ## Notes
   - Punctuations to keep when removing words:
@@ -54,10 +55,15 @@ Please see the [wiki][WIKI].
     `; : ' " , ! ? .`
 
 ## Inspiration
-[this article][1] on medium which was in-turn inspired by [this article][2]*
+[this article][1] on medium which was in-turn inspired by [this person's word.][2]*
 
 ## License
 [MIT][LICENSE]
+
+## Technical dependencies
+- Node platform version: `>5.0.0`
+- Promises with [Bluebird][Bluebird]: `bluebird ^3.3.1`
+- Stream helper with [Through2][Through2]: `through2 ^2.0.1`
 
 <!-- urls -->
 
@@ -70,4 +76,8 @@ Please see the [wiki][WIKI].
 [EXAMPLE_OUTPUT]: https://gist.github.com/sgnl/cce4382fd9302515e838
 
 [LICENSE]: https://github.com/sgnl/punc/blob/master/LICENSE
+
+[Blueburd]: https://github.com/petkaantonov/bluebird/
+
+[Through2]: https://github.com/rvagg/through2
 
