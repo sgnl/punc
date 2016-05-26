@@ -50,7 +50,7 @@ Please see the [wiki][WIKI].
     `; : ' " , ! ? .`
 
 ## Inspiration
-[this article][1] on medium which was in-turn inspired by [this person's word.][2]
+[this article][1] on medium which was in-turn inspired by [this person's work.][2]
 
 ## License
 [MIT][LICENSE]
