@@ -11,7 +11,7 @@ const ForEach   = [].forEach;
 const PDFkit = require('pdfkit');
 const WriteFile = require('fs').createWriteStream;
 
-/* MODULE */
+/* module to be exposed */
 function Punc(filePath, options){
   if (!filePath) throw new Error('Punc: file path not given.');
   if (!options) {
@@ -60,8 +60,7 @@ function Punc(filePath, options){
   });
 }
 
-/* core helper */
-
+/* module helpers */
 function removeAndReplace (regex, replace, dest) {
   return Through2.obj(function(chunk, _, callback) {
     chunk = chunk.replace(regex, replace);
@@ -94,7 +93,7 @@ function findAndCount (map, dest) {
   });
 }
 
-/* additional methods */
+/* additional module methods */
 Punc.createPDF = (filePath, options) => {
   if (!filePath) throw new Error('Punc.createPDF: file path not given.');
   if (!options) {
