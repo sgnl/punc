@@ -72,7 +72,7 @@ Please see the [wiki][WIKI].
 
 [LICENSE]: https://github.com/sgnl/punc/blob/master/LICENSE
 
-[Blueburd]: https://github.com/petkaantonov/bluebird/
+[Bluebird]: https://github.com/petkaantonov/bluebird/
 
 [Through2]: https://github.com/rvagg/through2
 
