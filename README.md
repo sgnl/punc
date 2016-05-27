@@ -5,6 +5,7 @@ Read a file, remove the words, see all the punctuations.
 
 [![npm](https://img.shields.io/npm/v/punc.svg?style=flat-square)](https://badge.fury.io/js/punc)
 [![Travis](https://img.shields.io/travis/sgnl/punc.svg?style=flat-square)](https://travis-ci.org/sgnl/punc)
+[![Coverage Status](https://coveralls.io/repos/github/sgnl/punc/badge.svg?branch=master)](https://coveralls.io/github/sgnl/punc?branch=master)
 
 ## Installation
 
