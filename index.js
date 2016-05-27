@@ -1,5 +1,5 @@
 
-'use strict'
+'use strict';
 
 /* core */
 const Promise   = require('bluebird');
@@ -13,16 +13,7 @@ const WriteFile = require('fs').createWriteStream;
 
 /* module to be exposed */
 function Punc(filePath, options){
-  if (!filePath) throw new Error('Punc: file path not given.');
-  if (!options) {
-    options = { encoding: 'utf8' };
-  } else if (typeof options === 'string') {
-    options = { encoding: options };
-  } else if (typeof options !== 'object') {
-    throw new TypeError(`Punc: expected options to be either
-      an object or a string, but got ${typeof options} instead`
-    );
-  }
+  options = validateOptions(filePath, options);
 
   let punctuationStore = [];
   let wordsPerSent = 0;
@@ -95,16 +86,7 @@ function findAndCount (map, dest) {
 
 /* additional module methods */
 Punc.createPDF = (filePath, options) => {
-  if (!filePath) throw new Error('Punc.createPDF: file path not given.');
-  if (!options) {
-    options = { encoding: 'utf8' };
-  } else if (typeof options === 'string') {
-    options = { encoding: options };
-  } else if (typeof options !== 'object') {
-    throw new TypeError(`Punc.createPDF: expected options to be either
-      an object or a string, but got ${typeof options} instead`
-    );
-  }
+  options = validateOptions(filePath, options);
 
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
@@ -130,6 +112,21 @@ Punc.createPDF = (filePath, options) => {
     ;
   });
 }
+
+let validateOptions = (filePath, options) => {
+  if (!filePath) throw new Error('Punc.createPDF: file path not given.');
+  if (!options) {
+    options = { encoding: 'utf8' };
+  } else if (typeof options === 'string') {
+    options = { encoding: options };
+  } else if (typeof options !== 'object') {
+    throw new TypeError(`Punc.createPDF: expected options to be either
+      an object or a string, but got ${typeof options} instead`
+    );
+  }
+
+  return options;
+};
 
 /* THE TRUTH IS OUT THERE */
 module.exports = Punc;
