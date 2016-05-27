@@ -4,7 +4,7 @@
   "description": "Ever wonder what your favorite books look like without words?",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/tape 'tests/**/*.js'"
+    "test": "node_modules/.bin/tap 'tests/**/*.js'"
   },
   "keywords": [
     "punc",
@@ -25,6 +25,7 @@
     "through2": "^2.0.1"
   },
   "devDependencies": {
+    "tap": "^5.7.2",
     "tape": "^4.4.0"
   }
 }
