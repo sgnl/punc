@@ -96,7 +96,7 @@ Test('Punc: spaced out text', t => {
 Test('Punc.createPDF: method exists?', t => {
   t.equals(typeof Punc.createPDF, 'function', 'createPDF method exists.');
   t.end();
-})
+});
 
 Test('Punc.createPDF: handles null filePath argument?', t => {
   t.plan(1);
@@ -112,10 +112,10 @@ Test('Punc.createPDF: creates PDF file', t => {
     .then(success => {
       t.pass('Punc returns success message');
 
-      return ReadFile(filePath, (err, data) => {
+      ReadFile(filePath, (err, data) => {
         if (err) return reject(err);
         if (data) return t.pass('pdf file exists');
       });
     })
     .catch(err => t.fail(err));
-})
+});
