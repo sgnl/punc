@@ -68,7 +68,7 @@ Test('Punc: punctuation body', t => {
   return Punc('tests/books/alice.txt')
     .then(book => {
       t.ok(book.body, 'body property exists on returned object');
-      t.equals(book.body, '-;,.\'(-;-.,""');
+      t.equals(book.body, `-;,.'(-;-.,""`);
     })
     .catch(err => t.fail(err));
 });
@@ -93,7 +93,7 @@ Test('Punc: spaced out text', t => {
       t.equals(book.spaced, ' .    !      ?        .');
     })
     .catch(err => t.fail(err));
-})
+});
 
 Test('Punc.createPDF: method exists?', t => {
   t.equals(typeof Punc.createPDF, 'function', 'createPDF method exists.');
@@ -116,7 +116,7 @@ Test('Punc.createPDF: creates PDF file', t => {
 
       ReadFile(filePath, (err, data) => {
         if (err) return reject(err);
-        if (data) return t.pass('pdf file exists');
+        return t.pass('pdf file exists');
       });
     })
     .catch(err => t.fail(err));
