@@ -84,8 +84,7 @@ function findAndCount (map, dest) {
   });
 }
 
-/* additional module methods */
-Punc.createPDF = (filePath, options) => {
+function createPDF (filePath, options) {
   options = validateOptions(filePath, options);
 
   return new Promise((resolve, reject) => {
@@ -107,13 +106,13 @@ Punc.createPDF = (filePath, options) => {
 
         resolve({success: true, pathToFile: newFileName });
       })
-      .on('end', _ => _)
-      .on('error', error => reject(error))
-    ;
-  });
+    .on('end', _ => _)
+    .on('error', error => reject(error))
+  ;
+});
 }
 
-let validateOptions = (filePath, options) => {
+function validateOptions (filePath, options) {
   if (!filePath) throw new Error('Punc.createPDF: file path not given.');
   if (!options) {
     options = { encoding: 'utf8' };
@@ -127,6 +126,9 @@ let validateOptions = (filePath, options) => {
 
   return options;
 };
+
+/* additional module methods */
+Punc.createPDF = createPDF;
 
 /* THE TRUTH IS OUT THERE */
 module.exports = Punc;
