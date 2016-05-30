@@ -43,6 +43,7 @@ Test('Punc: punctuation count', t => {
     .then(book => {
       t.ok(book.count, 'count property exists on returned object');
 
+      // TODO: refactor into functional?
       for (let key in book.count) {
 
         if (!punctuationMap.hasOwnProperty(key)) {
