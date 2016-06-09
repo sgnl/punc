@@ -43,7 +43,13 @@ Test('Punc: punctuation count', t => {
     .then(book => {
       t.ok(book.count, 'count property exists on returned object');
 
-      // TODO: refactor into functional?
+      // TODO: refactor into functional? Reduce keys down into array
+      // if the array is not empty then fail tests with array 
+
+      // check that keys are valid
+
+      // check that keys: values are valid
+
       for (let key in book.count) {
 
         if (!punctuationMap.hasOwnProperty(key)) {
@@ -58,6 +64,8 @@ Test('Punc: punctuation count', t => {
           );
         }
       }
+
+      let hasAllPunctuations = Object.keys(punctuationMap).every();
     })
     .catch(err => t.fail(err));
 });
