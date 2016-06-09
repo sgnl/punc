@@ -65,7 +65,6 @@ Test('Punc: punctuation count', t => {
         }
       }
 
-      let hasAllPunctuations = Object.keys(punctuationMap).every();
     })
     .catch(err => t.fail(err));
 });
