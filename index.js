@@ -18,30 +18,18 @@ function Punc(filePath, options){
   let punctuationStore = [];
   let wordsPerSent = 0;
   let spacedOutBody = '';
-  let dict = { ';': 0
-  , ':': 0
-  , "'": 0
-  , '"': 0
-  , ',': 0
-  , '!': 0
-  , '?': 0
-  , '.': 0
-  , '(': 0
-  , ')': 0
-  , '-': 0
-  };
 
   return new Promise((resolve, reject) => {
     ReadFile(filePath, options.encoding)
       .pipe(removeAndReplace(/[\r\n]/g, ''))
       .pipe(removeAndReplace(/[\s]+/g, ' '))
-      .pipe(findAndCount(dict, punctuationStore))
+      .pipe(findAndCount(options.mapping, punctuationStore))
       .pipe(findWordsPerSentence(count => wordsPerSent = count))
       .pipe(removeAndReplace(/[a-zA-Z\d]+/g, ' ', spaced => spacedOutBody = spaced))
       .on('data', _ => _)
       .on('end', _ => {
         return resolve({ body: punctuationStore.join('')
-        , count: dict
+        , count: options.mapping
         , wordsPerSentence: wordsPerSent
         , spaced: spacedOutBody
         });
@@ -115,7 +103,7 @@ function createPDF (filePath, options) {
 function validateOptions (filePath, options) {
   if (!filePath) throw new Error('Punc.createPDF: file path not given.');
   if (!options) {
-    options = { encoding: 'utf8' };
+    options = { encoding: 'utf8', mapping: defaultMapping() };
   } else if (typeof options === 'string') {
     options = { encoding: options };
   } else if (typeof options !== 'object') {
@@ -126,6 +114,21 @@ function validateOptions (filePath, options) {
 
   return options;
 };
+
+function defaultMapping() {
+  return { ';': 0
+  , ':': 0
+  , "'": 0
+  , '"': 0
+  , ',': 0
+  , '!': 0
+  , '?': 0
+  , '.': 0
+  , '(': 0
+  , ')': 0
+  , '-': 0
+  };
+}
 
 /* additional module methods */
 Punc.createPDF = createPDF;
